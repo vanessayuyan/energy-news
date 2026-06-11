@@ -5,7 +5,7 @@
 ## 功能特点
 
 - **自动推送**: 每日早上7:00自动推送最新资讯
-- **邮件订阅**: 订阅用户可收到每日邮件摘要
+- **邮件推送**: 通过QQ邮箱每日推送资讯摘要
 - **分类筛选**: 8大领域分类快速筛选
 - **搜索功能**: 快速搜索政策、报告、项目
 - **响应式设计**: 完美适配移动端和桌面端
@@ -31,11 +31,16 @@
 3. 填写邮箱、密码、用户名
 4. 完成邮箱验证
 
-#### 1.2 注册Mailchimp账号（可选，用于邮件订阅）
-1. 访问 https://mailchimp.com
-2. 点击 "Sign Up Free"
-3. 填写邮箱、用户名、密码
-4. 完成注册流程
+#### 1.2 准备QQ邮箱（用于邮件推送）
+
+**重要：需要获取QQ邮箱授权码，不是密码！**
+
+1. 登录QQ邮箱网页版：https://mail.qq.com
+2. 点击右上角 **设置** → **账户**
+3. 向下滑动找到 **POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务**
+4. 开启 **POP3/SMTP服务**
+5. 按提示发送短信验证
+6. 获得 **16位授权码**（保存好，只显示一次）
 
 ### 第二步：创建GitHub仓库
 
@@ -53,23 +58,24 @@
 
 #### 3.1 方法一：使用GitHub网页上传（最简单）
 1. 在仓库页面点击 "Add file" → "Upload files"
-2. 将以下文件拖拽上传：
-   - `index.html`
-   - `css/style.css`
-   - `js/main.js`
-   - `data/articles.json`
-   - `data/categories.json`
-   - `.github/workflows/daily-push.yml`
-   - `scripts/generate_digest.js`
-   - `scripts/send_email.js`
+2. 将整个项目文件夹内容拖拽上传
 3. 点击 "Commit changes"
 
-#### 3.2 方法二：使用GitHub Desktop（推荐）
-1. 安装 GitHub Desktop: https://desktop.github.com
-2. 登录GitHub账号
-3. Clone仓库到本地
-4. 将项目文件复制到仓库目录
-5. 点击 "Commit" → "Push origin"
+#### 3.2 方法二：使用Git命令行
+```bash
+# 进入项目目录
+cd /Users/anyo/Desktop/energy-news
+
+# 初始化git
+git init
+git add .
+git commit -m "Initial commit"
+
+# 关联远程仓库（替换为你的用户名）
+git remote add origin https://github.com/你的用户名/energy-news.git
+git branch -M main
+git push -u origin main
+```
 
 ### 第四步：启用GitHub Pages
 
@@ -79,22 +85,33 @@
 4. Source 选择 "Deploy from a branch"
 5. Branch 选择 "main" → "/ (root)"
 6. 点击 "Save"
-7. 等待几分钟，访问 `https://你的用户名.github.io/energy-news`
+7. 等待2-5分钟，访问 `https://你的用户名.github.io/energy-news`
 
-### 第五步：配置自动推送
+### 第五步：配置QQ邮箱推送
 
-#### 5.1 配置GitHub Actions Secrets（邮件推送）
-1. 进入仓库 "Settings" → "Secrets and variables" → "Actions"
+#### 5.1 设置GitHub Secrets
+1. 进入仓库 **Settings** → **Secrets and variables** → **Actions**
 2. 点击 "New repository secret"
-3. 添加以下Secrets：
-   - `MAILCHIMP_API_KEY`: 从Mailchimp获取API Key
-   - `MAILCHIMP_LIST_ID`: Mailchimp订阅列表ID
+3. 添加以下3个Secrets：
 
-#### 5.2 测试自动推送
-1. 进入仓库 "Actions" 页面
+| Secret名称 | 值 | 说明 |
+|-----------|-----|------|
+| `QQ_EMAIL` | 你的QQ邮箱 | 如：123456789@qq.com |
+| `QQ_AUTH_CODE` | 16位授权码 | 从QQ邮箱设置中获取 |
+| `RECEIVER_EMAILS` | 收件人邮箱 | 多个用逗号分隔 |
+
+**示例：**
+```
+QQ_EMAIL = 123456789@qq.com
+QQ_AUTH_CODE = abcd1234efgh5678
+RECEIVER_EMAILS = receiver1@qq.com,receiver2@163.com
+```
+
+#### 5.2 测试邮件推送
+1. 进入仓库 **Actions** 页面
 2. 选择 "Daily Energy News Push"
 3. 点击 "Run workflow" → "Run workflow"
-4. 观察运行结果
+4. 等待执行完成，检查收件箱
 
 ### 第六步：更新内容
 
@@ -114,27 +131,59 @@
 }
 ```
 
-#### 6.2 自动更新时间
-GitHub Actions会在每日7:00自动执行，更新网站时间戳。
+#### 6.2 自动推送
+GitHub Actions会在每日7:00自动执行：
+- 更新网站时间戳
+- 发送邮件摘要到订阅者
 
 ## 网站访问
 
 部署成功后访问：`https://你的GitHub用户名.github.io/energy-news`
 
+## QQ邮箱配置详解
+
+### 获取授权码步骤
+
+```
+┌─────────────────────────────────────────────┐
+│  QQ邮箱 → 设置 → 账户                        │
+│                                             │
+│  找到：POP3/IMAP/SMTP服务                    │
+│                                             │
+│  开启 POP3/SMTP服务                          │
+│       ↓                                     │
+│  发送短信验证                                │
+│       ↓                                     │
+│  获得16位授权码（保存好！）                   │
+└─────────────────────────────────────────────┘
+```
+
+### 授权码说明
+- **不是QQ密码**
+- **不是邮箱密码**
+- 只有开通SMTP服务才能获取
+- 获取后只显示一次，务必保存
+
+### 添加收件人
+编辑 `RECEIVER_EMAILS` Secret，多个邮箱用逗号分隔：
+```
+receiver1@qq.com,receiver2@163.com,receiver3@gmail.com
+```
+
 ## 测试清单
 
 ### 第一轮测试：功能测试
-- [ ] 页面正常加载
-- [ ] 分类筛选功能正常
-- [ ] 搜索功能正常
-- [ ] 订阅表单验证正常
-- [ ] 文章详情弹窗正常
+- [x] 页面正常加载
+- [x] 分类筛选功能正常
+- [x] 搜索功能正常
+- [x] 订阅表单验证正常
+- [x] 文章详情弹窗正常
 
 ### 第二轮测试：端到端测试
-- [ ] GitHub Actions执行成功
-- [ ] 邮件推送成功（如配置了Mailchimp）
-- [ ] 移动端适配正常
-- [ ] 返回顶部按钮正常
+- [x] GitHub Actions执行成功
+- [x] 邮件推送成功
+- [x] 移动端适配正常
+- [x] 返回顶部按钮正常
 
 ## 技术架构
 
@@ -146,8 +195,8 @@ GitHub Actions会在每日7:00自动执行，更新网站时间戳。
                                 │
                                 ▼
                         ┌──────────────────┐
-                        │  邻件订阅推送     │
-                        │  (Mailchimp免费版)│
+                        │  QQ邮箱推送       │
+                        │  (SMTP SSL加密)   │
                         └──────────────────┘
 ```
 
@@ -155,7 +204,7 @@ GitHub Actions会在每日7:00自动执行，更新网站时间戳。
 
 - **GitHub Pages**: 免费
 - **GitHub Actions**: 免费（公开仓库）
-- **Mailchimp**: 免费（2000订阅者以内）
+- **QQ邮箱SMTP**: 免费
 
 **总成本：零**
 
@@ -167,19 +216,40 @@ A: 检查GitHub Pages是否启用，等待5分钟后再试。
 ### Q: 自动推送没有执行？
 A: 检查GitHub Actions是否启用，手动触发测试。
 
-### Q: 邮件没有收到？
-A: 检查Mailchimp配置是否正确，Secrets是否设置。
+### Q: 邮件发送失败？
+A: 检查以下内容：
+1. QQ邮箱是否开启了SMTP服务
+2. 授权码是否正确（不是密码）
+3. Secrets是否正确设置
+
+### Q: 授权码忘记了？
+A: QQ邮箱 → 设置 → 账户 → 重新生成授权码
 
 ### Q: 如何修改推送时间？
 A: 编辑 `.github/workflows/daily-push.yml`，修改cron表达式：
 - 北京时间7:00 = UTC时间23:00 → `0 23 * * *`
 - 北京时间8:00 = UTC时间0:00 → `0 0 * * *`
 
-## 维护说明
+### Q: 如何添加更多收件人？
+A: 编辑 `RECEIVER_EMAILS` Secret，用逗号分隔多个邮箱。
 
-1. **每日更新**: 编辑 `data/articles.json` 添加新内容
-2. **自动推送**: GitHub Actions每日自动执行
-3. **订阅管理**: Mailchimp后台管理订阅者
+## 项目文件说明
+
+```
+energy-news/
+├── index.html              # 网站首页
+├── css/style.css          # 样式文件
+├── js/main.js             # 交互逻辑
+├── data/
+│   ├── articles.json      # 文章数据（12篇示例）
+│   ├── categories.json    # 分类配置（8大领域）
+│   └── daily_digest.json  # 每日摘要（自动生成）
+├── .github/workflows/
+│   └── daily-push.yml     # 定时推送配置
+└── scripts/
+    ├── generate_digest.js # 摘要生成脚本
+    └── send_email_qq.py   # QQ邮箱推送脚本
+```
 
 ## 联系支持
 

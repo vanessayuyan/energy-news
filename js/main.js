@@ -182,6 +182,11 @@ function openArticleDetail(article) {
         if (e.target === modal) modal.remove();
     };
 
+    // 构建链接HTML
+    const linkHTML = article.link
+        ? `<a href="${article.link}" target="_blank" rel="noopener noreferrer" class="article-link-btn">查看原文链接 →</a>`
+        : '';
+
     modal.innerHTML = `
         <div class="modal-content">
             <button class="modal-close" onclick="this.parentElement.parentElement.remove()">×</button>
@@ -195,6 +200,7 @@ function openArticleDetail(article) {
                     <span>日期: ${article.date}</span>
                 </div>
                 <div class="modal-content-text">${article.content || article.summary}</div>
+                ${linkHTML}
                 <div class="modal-tags">
                     ${article.tags.map(tag => `<span class="article-tag">${tag}</span>`).join('')}
                 </div>

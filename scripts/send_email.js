@@ -88,6 +88,8 @@ function generateEmailHTML(digest) {
         .article { padding: 15px; background: #f7fafc; margin: 10px 0; border-radius: 8px; }
         .article-title { color: #1a365d; font-weight: bold; }
         .article-summary { color: #4a5568; margin-top: 5px; }
+        .article-link { display: inline-block; margin-top: 8px; padding: 6px 12px; background: #38a169; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; }
+        .article-link:hover { background: #2f855a; }
         .footer { text-align: center; padding: 20px; color: #718096; font-size: 12px; }
         .unsubscribe { color: #718096; }
     </style>
@@ -107,6 +109,9 @@ function generateEmailHTML(digest) {
         <div class="category-title">${category}</div>
 `;
         articles.forEach(article => {
+            const linkHTML = article.link
+                ? `<a href="${article.link}" class="article-link" target="_blank">查看原文链接 →</a>`
+                : '';
             html += `
         <div class="article">
             <div class="article-title">${article.title}</div>
@@ -114,6 +119,7 @@ function generateEmailHTML(digest) {
             <div style="color: #718096; font-size: 12px; margin-top: 5px;">
                 来源: ${article.source} | 日期: ${article.date}
             </div>
+            ${linkHTML}
         </div>
 `;
         });
