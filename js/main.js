@@ -182,9 +182,9 @@ function openArticleDetail(article) {
         if (e.target === modal) modal.remove();
     };
 
-    // 构建链接HTML
+    // 构建链接HTML - 直接显示链接文本
     const linkHTML = article.link
-        ? `<a href="${article.link}" target="_blank" rel="noopener noreferrer" class="article-link-btn">查看原文链接 →</a>`
+        ? `<div class="article-link-text">原文链接: <a href="${article.link}" target="_blank" rel="noopener noreferrer">${article.link}</a></div>`
         : '';
 
     modal.innerHTML = `
@@ -443,6 +443,20 @@ notificationStyles.textContent = `
     .modal-tags {
         display: flex;
         gap: 8px;
+    }
+
+    .article-link-text {
+        margin: 16px 0;
+        padding: 12px;
+        background: #f7fafc;
+        border-radius: 8px;
+        color: #4a5568;
+        font-size: 14px;
+    }
+
+    .article-link-text a {
+        color: #38a169;
+        word-break: break-all;
     }
 `;
 document.head.appendChild(notificationStyles);

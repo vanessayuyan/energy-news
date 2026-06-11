@@ -1,0 +1,262 @@
+[
+    {
+        "id": 1,
+        "name": "国家能源局",
+        "url": "http://www.nea.gov.cn/",
+        "newsUrl": "http://www.nea.gov.cn/xwfb/index.htm",
+        "priority": 20,
+        "category": "政策",
+        "selectors": {
+            "list": ".news-list li",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 2,
+        "name": "国家电网",
+        "url": "https://www.sgcc.com.cn/",
+        "newsUrl": "https://www.sgcc.com.cn/html/news.html",
+        "priority": 19,
+        "category": "行业动态",
+        "selectors": {
+            "list": ".news-item",
+            "title": ".title",
+            "link": "a"
+        }
+    },
+    {
+        "id": 3,
+        "name": "中科院",
+        "url": "https://www.cas.cn/",
+        "newsUrl": "https://www.cas.cn/sykyj/index.shtml",
+        "priority": 18,
+        "category": "研究报告",
+        "selectors": {
+            "list": ".list-item",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 4,
+        "name": "清华大学",
+        "url": "https://www.tsinghua.edu.cn/",
+        "newsUrl": "https://www.tsinghua.edu.cn/info/xwzx.htm",
+        "priority": 17,
+        "category": "研究报告",
+        "selectors": {
+            "list": ".news-item",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 5,
+        "name": "中国能源网",
+        "url": "https://www.china5e.com/",
+        "newsUrl": "https://www.china5e.com/news/",
+        "priority": 16,
+        "category": "综合资讯",
+        "selectors": {
+            "list": ".news-list li",
+            "title": ".title",
+            "link": "a"
+        }
+    },
+    {
+        "id": 6,
+        "name": "北极星电力网",
+        "url": "https://www.bjx.com.cn/",
+        "newsUrl": "https://www.bjx.com.cn/news/",
+        "priority": 15,
+        "category": "电力行业",
+        "selectors": {
+            "list": ".news-item",
+            "title": "h3 a",
+            "link": "h3 a"
+        }
+    },
+    {
+        "id": 7,
+        "name": "中国电力报",
+        "url": "http://www.cpnn.com.cn/",
+        "newsUrl": "http://www.cpnn.com.cn/news/",
+        "priority": 14,
+        "category": "行业媒体",
+        "selectors": {
+            "list": ".news li",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 8,
+        "name": "能源中国",
+        "url": "https://www.energychina.com.cn/",
+        "newsUrl": "https://www.energychina.com.cn/news/",
+        "priority": 13,
+        "category": "行业媒体",
+        "selectors": {
+            "list": ".article-item",
+            "title": ".title",
+            "link": "a"
+        }
+    },
+    {
+        "id": 9,
+        "name": "中国碳中和网",
+        "url": "https://www.tanpaifang.com/",
+        "newsUrl": "https://www.tanpaifang.com/news/",
+        "priority": 12,
+        "category": "碳管理",
+        "selectors": {
+            "list": ".news-item",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 10,
+        "name": "中国煤炭资源网",
+        "url": "http://www.sxcoal.com/",
+        "newsUrl": "http://www.sxcoal.com/news/",
+        "priority": 11,
+        "category": "煤炭行业",
+        "selectors": {
+            "list": ".news-list li",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 11,
+        "name": "中国石油新闻中心",
+        "url": "http://news.cnpc.com.cn/",
+        "newsUrl": "http://news.cnpc.com.cn/",
+        "priority": 10,
+        "category": "石油行业",
+        "selectors": {
+            "list": ".news-item",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 12,
+        "name": "新能源网",
+        "url": "https://www.newenergy.org.cn/",
+        "newsUrl": "https://www.newenergy.org.cn/news/",
+        "priority": 9,
+        "category": "新能源",
+        "selectors": {
+            "list": ".list-item",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 13,
+        "name": "智慧能源",
+        "url": "https://www.smart-energy.com.cn/",
+        "newsUrl": "https://www.smart-energy.com.cn/news/",
+        "priority": 8,
+        "category": "智慧能源",
+        "selectors": {
+            "list": ".news li",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 14,
+        "name": "储能网",
+        "url": "https://www.escn.com.cn/",
+        "newsUrl": "https://www.escn.com.cn/news/",
+        "priority": 7,
+        "category": "储能",
+        "selectors": {
+            "list": ".news-item",
+            "title": "h3 a",
+            "link": "h3 a"
+        }
+    },
+    {
+        "id": 15,
+        "name": "光伏们",
+        "url": "https://www.pvmen.com/",
+        "newsUrl": "https://www.pvmen.com/news/",
+        "priority": 6,
+        "category": "光伏",
+        "selectors": {
+            "list": ".article-item",
+            "title": ".title",
+            "link": "a"
+        }
+    },
+    {
+        "id": 16,
+        "name": "中国风能协会",
+        "url": "https://www.cwea.org.cn/",
+        "newsUrl": "https://www.cwea.org.cn/news/",
+        "priority": 5,
+        "category": "风电",
+        "selectors": {
+            "list": ".news-list li",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 17,
+        "name": "第一电动网",
+        "url": "https://www.d1ev.com/",
+        "newsUrl": "https://www.d1ev.com/news/",
+        "priority": 4,
+        "category": "电动汽车",
+        "selectors": {
+            "list": ".news-item",
+            "title": "h3 a",
+            "link": "h3 a"
+        }
+    },
+    {
+        "id": 18,
+        "name": "能源政策研究",
+        "url": "https://www.eri.org.cn/",
+        "newsUrl": "https://www.eri.org.cn/news/",
+        "priority": 3,
+        "category": "政策研究",
+        "selectors": {
+            "list": ".news li",
+            "title": "a",
+            "link": "a"
+        }
+    },
+    {
+        "id": 19,
+        "name": "国际能源网",
+        "url": "https://www.in-en.com/",
+        "newsUrl": "https://www.in-en.com/news/",
+        "priority": 2,
+        "category": "国际能源",
+        "selectors": {
+            "list": ".news-item",
+            "title": ".title",
+            "link": "a"
+        }
+    },
+    {
+        "id": 20,
+        "name": "能源日报",
+        "url": "https://www.energydaily.cn/",
+        "newsUrl": "https://www.energydaily.cn/news/",
+        "priority": 1,
+        "category": "综合资讯",
+        "selectors": {
+            "list": ".list-item",
+            "title": "a",
+            "link": "a"
+        }
+    }
+]
